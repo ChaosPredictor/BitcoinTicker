@@ -15,7 +15,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let baseURL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTC"
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     var finalURL = ""
-
+    
     //Pre-setup IBOutlets
     @IBOutlet weak var bitcoinPriceLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
@@ -88,18 +88,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 //    /***************************************************************/
 //    
     func updateCurrentData(json : JSON) {
-//
-//        if let tempResult = json["main"]["temp"].double {
-//
-//
-//        weatherData.temperature = Int(round(tempResult!) - 273.15)
-//        weatherData.city = json["name"].stringValue
-//        weatherData.condition = json["weather"][0]["id"].intValue
-//        weatherData.weatherIconName =    weatherData.updateWeatherIcon(condition: weatherData.condition)
-//        }
-//
-//        updateUIWithWeatherData()
-        print(json)
+
+        if let tempResult = json["last"].double {
+            bitcoinPriceLabel.text = String(tempResult)
+        } else {
+            bitcoinPriceLabel.text = "Data Unavailable"
+        }
+
     }
 //
 
